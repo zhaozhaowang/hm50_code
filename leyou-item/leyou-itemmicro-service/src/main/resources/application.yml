@@ -1,0 +1,41 @@
+#这是微服务的服务提供者...
+#这是微服务的服务提供者...
+#这是微服务的服务提供者...
+
+server:
+  port: 8081
+spring:
+  application:
+    #将来会作为微服务的名称注入到eureka容器
+    name: item-microService
+  datasource:
+    username: root
+    #password: 1919
+    password: 1234
+    url: jdbc:mysql://localhost:3306/hm49?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+    #hikari:
+      #max-lifetime: 28830000 # 一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒，参考MySQL wait_timeout参数（show variables like '%timeout%';）
+      #maximum-pool-size: 9 # 连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count)
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:10086/eureka
+  instance:
+    lease-renewal-interval-in-seconds: 5      #5秒钟发送一次心跳
+    lease-expiration-duration-in-seconds: 15  #10秒不发送就过期
+
+#type-aliases-package的作用
+#mapper.xml文件中resultMap的type或者parameterType会使用自定义的pojo，
+#此时可以用完全限定名来指定这些POJO的引用，例如
+#<select id="getUsers" resultType="com.e3mall.cms.dao.mapper.User">，
+#又或者你可以通过在application.properties中指定POJO扫描包来让mybatis自动扫描到自定义POJO，如下：
+#mybatis.type-aliases-package=com.e3mall.cms.dao.mapper
+mybatis:
+  type-aliases-package: com.time.interface.pojo
+  #mapper-locations: classpath:mapping/*Mapper.xml
+
+
+#所有的pojo对象是在item-interface工程里面的,但是和商品业务相关的逻辑又在item-microService工程里面
+#所以需要在item-microService的pom里面引入item-interface工程,进而获取pojo对象,type-aliases-package: com.time.item.pojo

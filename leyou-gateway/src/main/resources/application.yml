@@ -1,0 +1,21 @@
+#这是zuul网关,需要注册进入eureka...
+#这是zuul网关,需要注册进入eureka...
+#这是zuul网关,需要注册进入eureka...
+server:
+  port: 10010
+spring:
+  application:
+    name: leyou-gateway
+eureka:
+  client:
+    service-url:
+        #将zuul注册到eureka集群
+        defaultZone: http://localhost:10086/eureka
+        #从eureka集群拉取list
+        fetch-registry: true
+        #从eureka集群拉取list间隔时间是5秒
+        registry-fetch-interval-seconds: 5
+zuul:
+  prefix: /api
+  routes:
+    item-microService: /item/**  #item-microService这是服务名,路由到商品的微服务
