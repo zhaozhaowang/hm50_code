@@ -33,7 +33,7 @@ eureka:
 #又或者你可以通过在application.properties中指定POJO扫描包来让mybatis自动扫描到自定义POJO，如下：
 #mybatis.type-aliases-package=com.e3mall.cms.dao.mapper
 mybatis:
-  type-aliases-package: com.time.interface.pojo
+  type-aliases-package: com.time.item.pojo
   #mapper-locations: classpath:mapping/*Mapper.xml
 
 
