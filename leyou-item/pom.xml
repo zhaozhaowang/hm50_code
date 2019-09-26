@@ -19,25 +19,19 @@
     <!-- 打包方式为pom -->
     <packaging>pom</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>persistence-api</artifactId>
-            <version>1.0</version>
-        </dependency>
-    </dependencies>
+
 
 
 </project>
 
 
-        <!--因为与商品的品类相关，我们的工程命名为`leyou-item`.-->
+<!--因为与商品的品类相关，我们的工程命名为`leyou-item`.-->
 
-        <!--需要注意的是，我们的leyou-item是一个微服务，那么将来肯定会有其它系统需要来调用服务中提供的接口，获取的接口数据，也需要对应的实体类来封装，因此肯定也会使用到接口中关联的实体类。-->
+<!--需要注意的是，我们的leyou-item是一个微服务，那么将来肯定会有其它系统需要来调用服务中提供的接口，获取的接口数据，也需要对应的实体类来封装，因此肯定也会使用到接口中关联的实体类。-->
 
-        <!--因此这里我们需要使用聚合工程，将要提供的接口及相关实体类放到独立子工程中，以后别人引用的时候，只需要知道坐标即可。-->
+<!--因此这里我们需要使用聚合工程，将要提供的接口及相关实体类放到独立子工程中，以后别人引用的时候，只需要知道坐标即可。-->
 
-        <!--我们会在leyou-item中创建两个子工程：-->
+<!--我们会在leyou-item中创建两个子工程：-->
 
-        <!-- - leyou-item-interface：主要是对外暴露的接口及相关实体类-->
-        <!-- - leyou-item-service：所有业务逻辑及内部使用接口-->
+<!-- - leyou-item-interface：主要是对外暴露的接口及相关实体类-->
+<!-- - leyou-item-service：所有业务逻辑及内部使用接口-->
