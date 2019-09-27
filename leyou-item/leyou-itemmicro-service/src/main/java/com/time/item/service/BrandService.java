@@ -91,11 +91,11 @@ public class BrandService {
 
         Long brand_id = brand.getId();
         System.out.println("joyce  " + brand_id + " name " + brand.getName());
-
         System.out.println("joyce cids size " + cids.size());
         for (Long categoryId : cids) {
             System.out.println("joyce  cid " + categoryId);
             this.brandMapper.insertCategoryAndBrand(categoryId, brand_id);
         }
+
     }
 }
