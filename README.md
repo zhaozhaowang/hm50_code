@@ -146,6 +146,15 @@ http {
 
     server {
         listen       80;
+        server_name  image.leyou.com;
+        charset utf-8;
+        location / {
+						root /Users/mobiletestingdevice/git/hm50/allkindsofproblems/image;
+        }
+    }
+
+    server {
+        listen       80;
         server_name  api.leyou.com;
         charset utf-8;
         location / {
@@ -255,7 +264,18 @@ http {
 }
 ```
 
+## 12.修改host映射
 
+```properties
+127.0.0.1	localhost
+127.0.0.1	eurekaSlave1
+127.0.0.1	eurekaSlave2
+127.0.0.1	eurekaSlave3
+127.0.0.1	leyou.com
+127.0.0.1	manage.leyou.com
+127.0.0.1	api.leyou.com
+127.0.0.1	image.leyou.com
+```
 
 
 
