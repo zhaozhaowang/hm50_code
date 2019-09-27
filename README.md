@@ -157,10 +157,21 @@ http {
         listen       80;
         server_name  api.leyou.com;
         charset utf-8;
+        
+        #文件上传路径的映射
+        #http://api.leyou.com/api/upload/image
+        location /api/upload {
+						proxy_pass http://127.0.0.1:8082;
+						proxy_connect_timeout 600;
+						proxy_read_timeout 600;
+						#对api路径进行重写
+						rewrite "^/api/(.*)$" /$1 break;
+        }
+        
         location / {
-			proxy_pass http://127.0.0.1:10010;
-			proxy_connect_timeout 600;
-			proxy_read_timeout 600;
+					proxy_pass http://127.0.0.1:10010;
+					proxy_connect_timeout 600;
+					proxy_read_timeout 600;
         }
     }
 
@@ -277,5 +288,6 @@ http {
 127.0.0.1	image.leyou.com
 ```
 
+## 13.图片上传服务需要绕过网关
 
-
+图片上传服务过慢,效率很低,需要绕过网关.
