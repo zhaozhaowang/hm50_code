@@ -8,14 +8,26 @@ spring:
     name: leyou-gateway
 eureka:
   client:
+    #从eureka集群拉取list间隔时间是5秒
+    registry-fetch-interval-seconds: 5
+    #从eureka集群拉取list
+    fetch-registry: true
     service-url:
-        #将zuul注册到eureka集群
-        defaultZone: http://localhost:10086/eureka
-        #从eureka集群拉取list
-        fetch-registry: true
-        #从eureka集群拉取list间隔时间是5秒
-        registry-fetch-interval-seconds: 5
+      #将zuul注册到eureka集群
+      defaultZone: http://localhost:10086/eureka
+
+
 zuul:
-  prefix: /api
+  prefix: /api   # 路由路径前缀
   routes:
     item-microService: /item/**  #item-microService这是服务名,路由到商品的微服务
+
+
+
+
+
+#这里引入的eureka依赖是:eureka-client
+#<dependency>
+#   <groupId>org.springframework.cloud</groupId>
+#   <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+#</dependency>
