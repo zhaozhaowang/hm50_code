@@ -24,7 +24,7 @@ eureka:
       defaultZone: http://localhost:10086/eureka
   instance:
     lease-renewal-interval-in-seconds: 5      #5秒钟发送一次心跳
-    lease-expiration-duration-in-seconds: 15  #10秒不发送就过期
+    lease-expiration-duration-in-seconds: 15  #15秒不发送就过期
 
 #type-aliases-package的作用
 #mapper.xml文件中resultMap的type或者parameterType会使用自定义的pojo，
