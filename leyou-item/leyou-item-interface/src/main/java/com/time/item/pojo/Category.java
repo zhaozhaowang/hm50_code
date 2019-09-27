@@ -1,10 +1,6 @@
 package com.time.item.pojo;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
+import javax.persistence.*;
 
 
 //下面这些注解需要依赖这个包
@@ -20,8 +16,15 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    //'父类目id,顶级类目填0',
+    @Column(name = "parent_id")
     private Long parentId;
-    private Boolean isParent; // 注意isParent生成的getter和setter方法需要手动加上Is
+
+    //'是否为父节点，0为否，1为是',
+    @Column(name = "is_parent")
+    private Boolean isParent; // 注意isParent生成的getter和setter方法需要手动加上Is 是否为父节点，
+
     private Integer sort;
 
 
@@ -41,19 +44,19 @@ public class Category {
         this.name = name;
     }
 
-    public Long getIsParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setIsParentId(Long parentId) {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
 
-    public Boolean getParent() {
+    public Boolean getIsParent() {
         return isParent;
     }
 
-    public void setParent(Boolean parent) {
+    public void setIsParent(Boolean parent) {
         isParent = parent;
     }
 

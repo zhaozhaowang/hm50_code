@@ -4,12 +4,13 @@ import com.time.common.pojo.PageResult;
 import com.time.item.pojo.Brand;
 import com.time.item.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/brand")
@@ -23,6 +24,7 @@ public class BrandController {
 
     /**
      * 高级查询
+     *
      * @param key    查询关键字
      * @param page   默认在第1页
      * @param rows   默认一页展示五条数据
@@ -44,6 +46,15 @@ public class BrandController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(list);
+    }
+
+
+    //保存品牌数据
+    //@RequestBody Brand brand接受前台传来的json对象
+    @PostMapping
+    public ResponseEntity<Void> saveBrand(Brand brand, List<Long> cids) {
+        this.brandService.toSaveBrand(brand,cids);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 }
