@@ -65,10 +65,9 @@ public class BrandService {
      * 新增品牌
      *
      * @param brand
-     * @param cids
-     * 这里为什么需要加Transactional注解呢?
-     * DataSourceTransactionManager
-     * 多表的操作要用到事务,那么单个表的操作
+     * @param cids  这里为什么需要加Transactional注解呢?
+     *              DataSourceTransactionManager
+     *              多表的操作要用到事务,那么单个表的操作
      */
 
     @Transactional
@@ -77,11 +76,26 @@ public class BrandService {
         this.brandMapper.insertSelective(brand);
 
         //再去新增中间表
-        cids.forEach(cid -> {
-            //通用 mapper 解决的是单表的增删改查问题。不过通用 mapper 依然支持普通的 xml 映射语句，不冲突。
-            //复杂查询手写吧，避免不了。通用 mapper 是节省重复工作的，复杂查询一般不是重复性的。
-            Long b_id = brand.getId();
-            this.brandMapper.insertCategoryAndBrand(cid, b_id);
-        });
+        //cids.forEach(cid -> {
+        //通用 mapper 解决的是单表的增删改查问题。不过通用 mapper 依然支持普通的 xml 映射语句，不冲突。
+        //复杂查询手写吧，避免不了。通用 mapper 是节省重复工作的，复杂查询一般不是重复性的。
+        //    Long b_id = brand.getId();
+        //    this.brandMapper.insertCategoryAndBrand(cid, b_id);
+        //});
+
+
+        //因为我们在模型上设置的是,
+        // @Id
+        //@GeneratedValue(strategy = GenerationType.IDENTITY)
+        //所以brand对象的id是自增的,并且插入成功后会将id返给我们
+
+        Long brand_id = brand.getId();
+        System.out.println("joyce  " + brand_id + " name " + brand.getName());
+
+        System.out.println("joyce cids size " + cids.size());
+        for (Long categoryId : cids) {
+            System.out.println("joyce  cid " + categoryId);
+            this.brandMapper.insertCategoryAndBrand(categoryId, brand_id);
+        }
     }
 }

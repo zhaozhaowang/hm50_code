@@ -52,8 +52,8 @@ public class BrandController {
     //保存品牌数据
     //@RequestBody Brand brand接受前台传来的json对象
     @PostMapping
-    public ResponseEntity<Void> saveBrand(Brand brand, List<Long> cids) {
-        this.brandService.toSaveBrand(brand,cids);
+    public ResponseEntity<Void> saveBrand(Brand brand, @RequestParam("cids") List<Long> cids) {
+        this.brandService.toSaveBrand(brand, cids);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
