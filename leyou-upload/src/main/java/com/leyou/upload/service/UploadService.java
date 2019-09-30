@@ -45,7 +45,7 @@ public class UploadService {
             file.transferTo(new File("/Users/mobiletestingdevice/git/hm50/allkindsofproblems/image/" + originalFilename));
 
             //返回URL地址进行回显
-            return "http://image.leyou.com" + originalFilename;
+            return "http://image.leyou.com//" + originalFilename;
         } catch (IOException e) {
             LOGGER.info("服务器内部错误..." + originalFilename + "   " + e);
             e.printStackTrace();
