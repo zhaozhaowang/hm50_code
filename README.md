@@ -293,3 +293,13 @@ http {
 图片上传服务过慢,效率很低,需要绕过网关.
 
 https://www.bilibili.com/video/av54216146/?p=95
+
+## 14.不同模块使用的端口
+
+```
+leyou-gateway:10010
+item-microService:8081
+leyou-register:10086
+upload-service:8082
+```
+
