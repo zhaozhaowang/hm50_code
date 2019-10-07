@@ -13,8 +13,6 @@ npm run build
 build for production and view the bundle analyzer report
 npm run build --report
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
 2.项目结构
     build: 目录下面放的都是webpack的配置文件
     config: 目录下面放的都是webpack运行所需要的环境参数
@@ -28,6 +26,14 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
     3.然后通过:npm run dev 命令运行项目.
 
 4.修改host文件里面的域名和端口映射关系,以后通过域名来进行访问项目.
+    127.0.0.1	localhost
+    127.0.0.1	eurekaSlave1
+    127.0.0.1	eurekaSlave2
+    127.0.0.1	eurekaSlave3
+    127.0.0.1	leyou.com
+    127.0.0.1	manage.leyou.com
+    127.0.0.1	api.leyou.com
+    127.0.0.1	image.leyou.com
 
 5.什么是nginx?nginx属于反向代理
     正向代理:代理用户
@@ -64,195 +70,15 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
     nginx   97824 mobiletestingdevice    6u  IPv4 0xc1c4e861af9f9063      0t0  TCP *:http-alt (LISTEN)
     nginx   97825 mobiletestingdevice    6u  IPv4 0xc1c4e861af9f9063      0t0  TCP *:http-alt (LISTEN)
 
-11.MAC上编辑nginx的配置文件
+11.MAC上查看nginx的配置文件
 cat /usr/local/etc/nginx/nginx.conf
+这是Mac上的nginx配置文件:Mac_nginx.conf
 
-
-#user  nobody;
-
-#Nginx运行时使用的CPU核数
-worker_processes  1;
-
-#error_log  logs/error.log;
-#error_log  logs/error.log  notice;
-#error_log  logs/error.log  info;
-
-#pid        logs/nginx.pid;
-
-
-events {
-    #一个woeker进程的最大连接数
-    worker_connections  1024;
-}
-
-
-#Nginx用作虚拟主机时使用。每一个server模块生成一个虚拟主机。
-http {
-    include       mime.types;
-    default_type  application/octet-stream;
-
-    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-    #                  '$status $body_bytes_sent "$http_referer" '
-    #                  '"$http_user_agent" "$http_x_forwarded_for"';
-
-    #access_log  logs/access.log  main;
-
-    sendfile        on;
-    #tcp_nopush     on;
-
-    #keepalive_timeout  0;超时时间
-    keepalive_timeout  65;
-
-    #gzip  on;
-
-
-
-
-    server {
-        listen       80;
-        server_name  image.leyou.com;
-        charset utf-8;
-        location / {
-						root /Users/mobiletestingdevice/git/hm50/allkindsofproblems/image;
-        }
-    }
-
-    server {
-        listen       80;
-        server_name  api.leyou.com;
-        charset utf-8;
-
-        #文件上传路径的映射
-        #http://api.leyou.com/api/upload/image
-        location /api/upload {
-						proxy_pass http://127.0.0.1:8082;
-						proxy_connect_timeout 600;
-						proxy_read_timeout 600;
-						#对api路径进行重写
-						rewrite "^/api/(.*)$" /$1 break;
-        }
-
-        location / {
-					proxy_pass http://127.0.0.1:10010;
-					proxy_connect_timeout 600;
-					proxy_read_timeout 600;
-        }
-    }
-
-    #自定义端口和映射本地网络路径
-    server {
-        #监听端口
-        listen       80;
-        #服务地址
-        server_name  manage.leyou.com;
-
-        #编码方式
-        charset utf-8;
-
-        #access_log  logs/host.access.log  main;
-
-        #这是nginx.cnf的默认配置
-        #location / {
-            #root   html;
-            #设置默认网页
-            #index  index.html index.htm;
-        #}
-
-        #这是我们自己的配置
-        #/表示所有的请求都会走的路径
-        location / {
-            #代理地址
-            proxy_pass http://127.0.0.1:9001;
-            proxy_connect_timeout 6000;
-            proxy_read_timeout 600;
-        }
-
-        #error_page  404              /404.html;
-
-        # redirect server error pages to the static page /50x.html
-        #
-        error_page   500 502 503 504  /50x.html;
-        location = /50x.html {
-            root   html;
-        }
-
-        # proxy the PHP scripts to Apache listening on 127.0.0.1:80
-        #
-        #location ~ \.php$ {
-        #    proxy_pass   http://127.0.0.1;
-        #}
-
-        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
-        #
-        #location ~ \.php$ {
-        #    root           html;
-        #    fastcgi_pass   127.0.0.1:9000;
-        #    fastcgi_index  index.php;
-        #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
-        #    include        fastcgi_params;
-        #}
-
-        # deny access to .htaccess files, if Apache's document root
-        # concurs with nginx's one
-        #
-        #location ~ /\.ht {
-        #    deny  all;
-        #}
-    }
-
-
-    # another virtual host using mix of IP-, name-, and port-based configuration
-    #
-    #server {
-    #    listen       8000;
-    #    listen       somename:8080;
-    #    server_name  somename  alias  another.alias;
-
-    #    location / {
-    #        root   html;
-    #        index  index.html index.htm;
-    #    }
-    #}
-
-
-    # HTTPS server
-    #
-    #server {
-    #    listen       443 ssl;
-    #    server_name  localhost;
-
-    #    ssl_certificate      cert.pem;
-    #    ssl_certificate_key  cert.key;
-
-    #    ssl_session_cache    shared:SSL:1m;
-    #    ssl_session_timeout  5m;
-
-    #    ssl_ciphers  HIGH:!aNULL:!MD5;
-    #    ssl_prefer_server_ciphers  on;
-
-    #    location / {
-    #        root   html;
-    #        index  index.html index.htm;
-    #    }
-    #}
-    include servers/*;
-}
-
-12.修改host映射
-    127.0.0.1	localhost
-    127.0.0.1	eurekaSlave1
-    127.0.0.1	eurekaSlave2
-    127.0.0.1	eurekaSlave3
-    127.0.0.1	leyou.com
-    127.0.0.1	manage.leyou.com
-    127.0.0.1	api.leyou.com
-    127.0.0.1	image.leyou.com
-
-13.图片上传服务需要绕过网关
+12.图片上传服务需要绕过网关
     图片上传服务过慢,效率很低,需要绕过网关.
     https://www.bilibili.com/video/av54216146/?p=95
 
-14.不同模块使用的端口
+13.不同模块使用的端口
     leyou-gateway:10010
     item-microService:8081
     leyou-register:10086
