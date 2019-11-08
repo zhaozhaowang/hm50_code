@@ -30,25 +30,27 @@ node_modules: Vue的相关jar都在这里
 
 ### 4.修改host文件里面的域名和端口映射关系,以后通过域名来进行访问项目.
 
-​    127.0.0.1	localhost
-​    127.0.0.1	eurekaSlave1
-​    127.0.0.1	eurekaSlave2
-​    127.0.0.1	eurekaSlave3
-​    127.0.0.1	leyou.com
-​    127.0.0.1	manage.leyou.com
-​    127.0.0.1	api.leyou.com
-​    127.0.0.1	image.leyou.com
+```
+127.0.0.1	localhost
+127.0.0.1	eurekaSlave1
+127.0.0.1	eurekaSlave2
+127.0.0.1	eurekaSlave3
+127.0.0.1	leyou.com
+127.0.0.1	manage.leyou.com
+127.0.0.1	api.leyou.com
+127.0.0.1	image.leyou.com
+```
 
 ### 5.什么是nginx?nginx属于反向代理
 
-​    正向代理:代理用户
-​    反向代理:代理服务器
+正向代理:代理用户
+反向代理:代理服务器
 
 ### 6.zuul nginx区别?
 
-​    zuul和nginx有什么区别?
-​    zuul是在程序内部进行负载均衡
-​    nginx是在程序外部进行的负载均衡
+zuul和nginx有什么区别?
+zuul是在程序内部进行负载均衡
+nginx是在程序外部进行的负载均衡
 
 ### 7.修改jenkins端口
 
