@@ -23,12 +23,14 @@ node_modules: Vue的相关jar都在这里
 
 ### 3.项目说明
 
-​    Vue项目一般要关注package.json这个文件,这里面定义了该项目所用到的jar,类似于pom.xml文件.
-​    1.这是Vue项目,是后台系统的前端页面.
-​    2.拿到项目后,需要下载项目的依赖jar,执行命令:npm install.
-​    3.然后通过:npm run dev 命令运行项目.
+Vue项目一般要关注package.json这个文件,这里面定义了该项目所用到的jar,类似于pom.xml文件.
+1.这是Vue项目,是后台系统的前端页面.
+2.拿到项目后,需要下载项目的依赖jar,执行命令:npm install.
+3.然后通过:npm run dev 命令运行项目.
 
 ### 4.修改host文件里面的域名和端口映射关系,以后通过域名来进行访问项目.
+
+在Mac电脑的/private/etc目录下,修改hosts文件
 
 ```
 127.0.0.1	localhost
