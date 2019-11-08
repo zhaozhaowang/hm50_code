@@ -14,10 +14,12 @@ npm run build --report
 
 ### 2.项目结构
 
-​    build: 目录下面放的都是webpack的配置文件
-​    config: 目录下面放的都是webpack运行所需要的环境参数
-​    dist: 目录下面放的都是Vue项目打包后的目录
-​    node_modules: Vue的相关jar都在这里
+```
+build: 目录下面放的都是webpack的配置文件
+config: 目录下面放的都是webpack运行所需要的环境参数
+dist: 目录下面放的都是Vue项目打包后的目录
+node_modules: Vue的相关jar都在这里
+```
 
 ### 3.项目说明
 
