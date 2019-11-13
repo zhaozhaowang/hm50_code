@@ -42,6 +42,7 @@ public class BrandController {
     ) {
         //list分页查询的结果集
         PageResult<Brand> list = this.brandService.findBrandByPage(key, page, rows, sortBy, desc);
+        System.out.println("BrandController:   queryBrandByPage"   +   "   我被调用了");
         if (list == null || CollectionUtils.isEmpty(list.getItems())) {
             return ResponseEntity.notFound().build();
         }
