@@ -63,7 +63,6 @@ public class BrandService {
      */
     /**
      * 新增品牌
-     *
      * @param brand
      * @param cids  这里为什么需要加Transactional注解呢?
      *              DataSourceTransactionManager

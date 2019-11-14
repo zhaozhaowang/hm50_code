@@ -52,6 +52,8 @@ public class BrandController {
 
     //保存品牌数据
     //@RequestBody Brand brand接受前台传来的json对象
+    //响应json数据 要用@ResponseBody  接受json数据的话,要用@RequestBody
+    //但是要是用@RequestBody来接受前台传来的json数据的话,会不灵活,因为我们有时候只需要传递对象里面的某几个字段
     @PostMapping
     public ResponseEntity<Void> saveBrand(Brand brand, @RequestParam("cids") List<Long> cids) {
         this.brandService.toSaveBrand(brand, cids);
