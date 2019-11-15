@@ -10,6 +10,8 @@ spring:
   servlet:
     multipart:
       max-file-size: 5MB # 限制文件上传的大小
+
+
 # Eureka
 eureka:
   client:
@@ -31,3 +33,12 @@ fdfs:
     height: 60
   tracker-list: # tracker地址：你的虚拟机服务器地址+端口（默认是22122）
     - 192.168.56.101:22122
+
+
+
+
+#这里引入的eureka依赖是:eureka-client
+#<dependency>
+#   <groupId>org.springframework.cloud</groupId>
+#   <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+#</dependency>

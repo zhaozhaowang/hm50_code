@@ -27,6 +27,28 @@ public class UploadService {
         String originalFilename = file.getOriginalFilename();
 
 
+        /**
+         * 例如： Content-Type: text/html;charset:utf-8;
+
+         常见的媒体格式类型如下：
+
+         text/html ： HTML格式
+         text/plain ：纯文本格式
+         text/xml ：  XML格式
+         image/gif ：gif图片格式
+         image/jpeg ：jpg图片格式
+         image/png：png图片格式
+         以application开头的媒体格式类型：
+
+         application/xhtml+xml ：XHTML格式
+         application/xml     ： XML数据格式
+         application/atom+xml  ：Atom XML聚合格式
+         application/json    ： JSON数据格式
+         application/pdf       ：pdf格式
+         application/msword  ： Word文档格式
+         application/octet-stream ： 二进制流数据（如常见的文件下载）
+         */
+
         String contentType = file.getContentType();
         if (!content_Types.contains(contentType)) {
             LOGGER.info("文件类型不合法: {}", originalFilename);
